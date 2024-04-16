@@ -1,0 +1,115 @@
+<!--breadcrumbs area start-->
+<div class='breadcrumbs_area'>
+    <div class='row'>
+        <div class='col-12'>
+            <div class='breadcrumb_content'>
+                <ul>
+                    <li><a href='/'>home</a></li>
+                    <li><i class='fa fa-angle-right'></i></li>
+                    <li>login</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!--breadcrumbs area end-->
+
+<!-- customer login start -->
+<div class='customer_login'>
+    <div class='row'>
+        <!--login area start-->
+        <div class='col-lg-6 col-md-6'>
+            <div class='account_form'>
+                <h2>login</h2>
+                <form id='loginForm' action='/login/login'  method='POST'>
+                    <p>
+                        <label>Account<span>*</span></label>
+                        <input type='text' id='loginAccount' name='account' class='form-control' placeholder='Tên tài khoản' />
+                    </p>
+                    <p>
+                        <label>Passwords <span>*</span></label>
+                        <input type='password' id='password' name='password' class='form-control' placeholder='Mật khẩu' />
+                    </p>
+                    <div class='login_submit'>
+                        <button type='submit'>login</button>
+                        <label for='remember'>
+                            <input id='remember' type='checkbox' />
+                            Remember me
+                        </label>
+                        <a href='#'>Lost your password?</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!--login area start-->
+
+        <!--register area start-->
+        <div class='col-lg-6 col-md-6'>
+            <div class='account_form register'>
+                <h2>Register</h2>
+                <form id='registerForm' action='/login/register' method="POST">
+                    <p>
+                        <label>Account<span>*</span></label>
+                        <input type='text' id='account' name='account' class='form-control' placeholder='Tên tài khoản' />
+                    </p>
+                    <p>
+                        <label>Passwords <span>*</span></label>
+                        <input type='password' id='registerPassword' name='password' class='form-control' placeholder='Mật khẩu' />
+                    </p>
+                    <p>
+                        <label>Fullname<span>*</span></label>
+                        <input type='text' id='fullName' name='fullName' class='form-control' placeholder='Họ và tên' />
+                    </p>
+                    <p>
+                        <label>Email<span>*</span></label>
+                        <input type='text' id='email' name='email' class='form-control' placeholder='Email' />
+                    </p>
+                    <p>
+                        <label>Phone number<span>*</span></label>
+                        <input type='text' id='phone' name='phone' class='form-control' placeholder='Số điện thoại' />
+                    </p>
+                    <div class='login_submit'>
+                        <button type='submit'>Register</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!--register area end-->
+        <script>
+            document.getElementById('registerForm').addEventListener('submit', function(event) {
+                var account = document.getElementById('account').value;
+                var password = document.getElementById('registerPassword').value; // Thay đổi ID thành 'registerPassword'
+                var fullName = document.getElementById('fullName').value;
+                var email = document.getElementById('email').value;
+                var phone = document.getElementById('phone').value;
+
+                // Kiểm tra tính hợp lệ của các trường thông tin
+                if (account === '' || password === '' || fullName === '' || email === '' || phone === '') {
+                    alert('Vui lòng điền đầy đủ thông tin.');
+                    event.preventDefault(); // Ngăn chặn việc gửi yêu cầu đăng ký nếu thông tin không hợp lệ
+                    return;
+                }
+
+                // Kiểm tra định dạng email hợp lệ
+                var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(email)) {
+                    alert('Email không hợp lệ.');
+                    event.preventDefault();
+                    return;
+                }
+
+                // Kiểm tra số điện thoại hợp lệ (ví dụ: độ dài tối thiểu)
+                if (phone.length < 10) {
+                    alert('Số điện thoại không hợp lệ.');
+                    event.preventDefault();
+                    return;
+                }
+
+                // Các kiểm tra khác như kiểm tra tính duy nhất của tên tài khoản và email có thể được thêm ở đây
+
+                // Nếu tất cả các kiểm tra đã đúng, cho phép gửi yêu cầu đăng ký
+            });
+        </script>
+    </div>
+</div>
+<!-- customer login end -->
